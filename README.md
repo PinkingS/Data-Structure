@@ -16,11 +16,15 @@ main.cpp ---- main function for testing ADTs
 ## Sorting algorithms
 
 Including InsertionSort, ShellSort, MergeSort, HeapSort, QuickSort
+
+
 sort.c ---- implemention of sorting algorithms
+
+
 sort ---- execution file
 
 ## The End
 
 by.PinkingS
 
-...
+
