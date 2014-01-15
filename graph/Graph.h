@@ -2,16 +2,19 @@
 #include<string>
 using namespace std;
 
-struct VertexNode;
-typedef struct VertexNode *Vertex;
-struct GraphStruct;
-typedef struct GraphStruct *Graph;
+#define MaxVertexNum (10)
 
-Graph ReadGraph(string filename);
+struct VertexNode;
+typedef struct VertexNode *VertexList;
+struct TableEntry;
+typedef struct TableEntry Table[MaxVertexNum];
+
+void ReadGraph(string filename);
 //Graph InitGraph(int VertexNum);
 //void insert(int from, int to, int weight, Graph G);
-void DestroyGraph(Graph G);
-void showGraph(Graph G);
-
+void DestroyTable(Table T);
+void showTable(Table T);
+void printPath(int V, Table T);
+void Dijkstra(Table T);
 
 #endif

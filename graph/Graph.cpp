@@ -10,15 +10,66 @@ using namespace std;
 struct VertexNode{
 	int index;
 	int weight;
-	Vertex next;
+	VertexNode *next;
 };
 
-struct GraphStruct{
-	int GraphSize;
-	Vertex *TheVertexes;
+struct TableEntry{
+	VertexList header;
+	int known;
+	int path;
+	int dist;
 };
 
-Graph ReadGraph(string filename){
+static void InitTable(int VertexNum, Table T){
+	if(VertexNum < MinGraphSize){
+		cout << "Vertex size too small!" << endl;
+		return NULL;		
+	}
+/*	
+	T = (Table)malloc(sizeof(struct GraphStruct));
+	if(G == NULL){
+		cout << "out of space !" << endl;
+		return NULL;
+	}
+
+
+	G->TheVertexes = (Vertex *)malloc(sizeof(struct VertexNode) * (VertexNum+1) );//normal vertex index is started from 1
+	if(G->TheVertexes == NULL){
+		cout << "out of space!" << endl;
+		return NULL;
+	}
+*/
+	for(int i = 0; i <= VertexNum; i++){
+		T[i].header = (Vertex)malloc(sizeof(struct VertexNode));
+		if(T[i].header == NULL){
+			cout << "out of space ! " << endl;
+			return NULL;
+		}
+		else{
+			T[i].header->next = NULL;
+			T[i].known = FALSE;
+			T[i].path = -1;
+			T[i].dist = INT_MAX;
+		}
+	}
+}
+
+static void Insert(int from, int to, int weight, Table T){
+	VertexNode *V;
+	VertexNode *NewV;
+	
+	NewV = (VertexNode*)malloc(sizeof(struct VertexNode));
+	if(NewV == NULL){
+		cout << "out of space ! " << endl;
+		return ;
+	}
+	NewV->index = to;
+	NewV->weight = weight;
+	NewV->next = T[from].header->next;
+	T[from].header->next = NewV;
+}
+
+void ReadGraph(string filename, Table T){
 	ifstream graphFile;
 	string line;
 
@@ -29,80 +80,35 @@ Graph ReadGraph(string filename){
 	}
 	getline(graphFile, line);
 	int VertexNum = atoi(line.c_str());
-	Graph G = InitGraph(VertexNum);
+	InitTable(VertexNum, T);
 
 	int from, to, weight;
 	while(getline(graphFile, line)){
 		istringstream stream(line);
 		stream >> from >> to >> weight;
 		cout << from << to << weight;
-		insert(from, to, weight, G);
+		Insert(from, to, weight, T);
 	}
 }
 
-static Graph InitGraph(int VertexNum){
-	Graph G;
-	if(VertexNum < MinGraphSize){
-		cout << "Vertex size too small!" << endl;
-		return NULL;		
-	}
-	G = (Graph)malloc(sizeof(struct GraphStruct));
-	if(G == NULL){
-		cout << "out of space !" << endl;
-		return NULL;
-	}
-
-	G->GraphSize = VertexNum;
-
-	G->TheVertexes = (Vertex *)malloc(sizeof(struct VertexNode) * (VertexNum+1) );//normal vertex index is started from 1
-	if(G->TheVertexes == NULL){
-		cout << "out of space!" << endl;
-		return NULL;
-	}
-
-	for(int i = 0; i <= VertexNum; i++){
-		G->TheVertexes[i] = (Vertex)malloc(sizeof(struct VertexNode));
-		if(G->TheVertexes[i] == NULL){
-			cout << "out of space ! " << endl;
-			return NULL;
-		}
-		else
-			G->TheVertexes[i]->next = NULL;
-	}
-
-	return G;
-}
-
-static void insert(int from, int to, int weight, Graph G){
-	Vertex V, NewV;
-	
-	NewV = malloc(sizeof(struct VertexNode));
-	if(NewV == NULL){
-		cout << "out of space ! " << endl;
-		return 1;
-	}
-	NewV->index = to;
-	NewV->weight = weight;
-
-	V = G->TheVertexes[from];
-	NewV->next = V->next;
-	V->next = NewV;
-}
-
-void DestroyGraph(Graph G){
-	if(G == NULL)
+void DestroyTable(Table T){
+	if(T == NULL)
 		return ;
-	for(int i = 0; i <= G->GraphSize; i++)
-		free(G->TheVertexes[i]);
-	free(G->TheVertexes);
-	free(G);
+	for(int i = 0; i <= MaxVertexNum; i++)
+		free(T[i].header);
 }
 
-void showGraph(Graph G){
+void showTable(Table T){
 	int VertexNum = G->GraphSize;
 	cout << "Vertex Number : " << VertexNum << endl;
+	VertexList VL;
 
-	for(int i = 1; i <= VertexNum; i++){
-	
-}	
+	for(int i = 1; i <= 7; i++){
+		cout << "Vertex " << i << endl;
+		VL = T[i].header;
+		while(V->next != NULL){
+			VL = VL->next;
+			cout <<	"\t\t---" << VL->weight << "--->" << VL->index << endl; 
+		}
+	}	
 }

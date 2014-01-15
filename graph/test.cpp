@@ -3,9 +3,12 @@
 using namespace std;
 
 int main(){
-	Graph G;
+	Table T;
 	string filename = "graph.data";
-	G = ReadGraph(filename);
+	int VertexNum = 7;
+	Table T[VertexNum];
+	ReadGraph(filename, T);
+	showTable(T);
 	return 0;
 
 }
