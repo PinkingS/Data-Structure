@@ -3,7 +3,7 @@
 using namespace std;
 
 int main(){
-	string ss = "123456";
+	string ss = "123456789000";
 	cout << ss.substr(0, 3) << endl;
 	return 0;
 }
