@@ -27,7 +27,7 @@ void printBinary(int n) {
 }
 
 int main() {
-	int m = 1 << 10, n = 19;
+	int m = 1 << 10, n = 21;
 	int i = 2, j = 6;
 
 	int ans = insertBits(m, n, i, j);
