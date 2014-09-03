@@ -65,9 +65,9 @@ vector<vector<int> > permute_3(vector<int> &num) {
 
 
 int main() {
-	int a[] = {1, 2, 3};
-	vector<int> num(a, a+3);
-	vector<vector<int> > res = permute_3(num);
+	int a[] = {1, 2, 3, 4, 5};
+	vector<int> num(a, a+5);
+	vector<vector<int> > res = permute_2(num);
 	for(int i = 0; i < res.size(); ++i) {
 		for(int j = 0; j < res[i].size(); ++j)
 			cout << res[i][j] << " ";
