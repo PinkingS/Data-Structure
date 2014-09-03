@@ -63,7 +63,6 @@ vector<vector<int> > permute_3(vector<int> &num) {
 	return res;
 }
 
-
 int main() {
 	int a[] = {1, 2, 3, 4, 5};
 	vector<int> num(a, a+5);
