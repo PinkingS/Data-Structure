@@ -36,8 +36,6 @@ vector<vector<int> > subsetsWithDup(vector<int> &S) {
 	return res;
 }
 
-
-
 int main() {
 	int a[] = {1, 2, 2};
 	vector<int> S(a, a+3);
