@@ -30,7 +30,7 @@ void nextPermutation(vector<int> &num) {
 int main() {
 	int a[] = {5, 2, 4, 3, 1};
 	int b[] = {5, 4, 3, 2, 1};
-	vector<int> num(b, b+5);
+	vector<int> num(a, a+5);
 	nextPermutation(num);
 	for(int i = 0; i < num.size(); ++i)
 		cout << num[i] << " ";
