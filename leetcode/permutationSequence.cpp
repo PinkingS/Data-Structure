@@ -24,7 +24,6 @@ string getPermutation(int n, int k) {
 }
 
 int main() {
-	
 	cout << getPermutation(3, 2) << endl;
 	return 0;
 }
