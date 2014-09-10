@@ -48,4 +48,39 @@ void recoverTree_2(TreeNode *root) {
 	swap(first->val, second->val);
 }
 
-
+void recoverTree_3(TreeNode *root) {
+	TreeNode *pre = NULL, *first = NULL, *second = NULL;
+	TreeNode *cur = root;
+	while(cur) {
+		if(cur->left == NULL) {
+			if(pre && pre->val > cur->val) {
+				if(!first)
+					first = pre;
+				second = cur;
+			}
+			pre = cur;
+			cur = cur->right;
+		}
+		else {
+			TreeNode *tmp = cur->left;
+			while(tmp->right && tmp->right != cur) {
+				tmp = tmp->right;
+			}
+			
+			if(tmp->right == NULL) {
+				tmp->right = cur;
+				cur = cur->left;
+			} else if(tmp->right == cur) {
+				tmp->right = NULL;
+				if(pre && pre->val > cur->val) {
+					if(!first)
+						first = pre;
+					second = cur;
+				}
+				pre = cur;
+				cur = cur->right;
+			}
+		}
+	}
+	swap(first->val, second->val);
+}
