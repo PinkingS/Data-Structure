@@ -102,7 +102,7 @@ void printReverse(TreeNode *from, TreeNode *to) {
 void postorderTraversal(TreeNode *root) {
 	TreeNode dump(0);
 	dump.left = root;
-	TreeNode *cur = root, *pre = NULL;
+	TreeNode *cur = &dump, *pre = NULL;
 	while(cur) {
 		if(cur->left == NULL) {
 			cur = cur->right;
