@@ -14,6 +14,8 @@ struct TreeNode {
 	TreeNode(int x) : val(x), left(NULL), right(NULL) {}
 };
 
+
+// build tree from string ...
 vector<string> split(string s) {
 	vector<string> ret;
 	int last = 0;
@@ -65,6 +67,8 @@ TreeNode* createTree(string s) {
 	return root;
 }
 
+
+// delete tree...
 void deleteTree(TreeNode *root) {
 	if(!root)
 		return;
@@ -73,6 +77,8 @@ void deleteTree(TreeNode *root) {
 	delete root;
 }
 
+
+// show tree in level order ...
 void showTree(TreeNode *root) {
 	queue<TreeNode*> q;
 	if(!root)
@@ -172,6 +178,8 @@ int main() {
 	for(int i = 0; i < seq.size(); ++i)
 		cout << seq[i] << " ";
 	cout << endl;
+
+	deleteTree(root);
 
 	return 0;
 }
