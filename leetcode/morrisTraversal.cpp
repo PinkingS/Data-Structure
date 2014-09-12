@@ -96,6 +96,7 @@ void printReverse(TreeNode *from, TreeNode *to) {
 			break;
 		p = p->right;
 	}
+	reverse(to, from);
 }
 
 void postorderTraversal(TreeNode *root) {
