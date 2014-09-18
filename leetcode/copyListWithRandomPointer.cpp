@@ -55,5 +55,3 @@ RandomListNode *copyRandomList_2(RandomListNode *head) {
 	}
 	return dummy.next;
 }
-
-
